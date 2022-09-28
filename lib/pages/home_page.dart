@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HomePage extends StatelessWidget {
-  // const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(MdiIcons.sword),
-        title: Text('Certamen 1 - Unidades'),
+        title: Center(
+          child: Column(
+            children: [Text('Unidad 1'), Text('author: maxg-dev')],
+          ),
+        ),
         backgroundColor: Colors.green,
       ),
       body: Center(
@@ -19,34 +22,11 @@ class HomePage extends StatelessWidget {
             Spacer(),
             Icon(MdiIcons.bookOpen, size: 200, color: Colors.red),
             Spacer(),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.pink),
-                  fixedSize: MaterialStateProperty.all(Size(200, 10))),
-              child: Text('ListView'),
-              onPressed: () => navegar(context, 1),
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.cyan),
-                  fixedSize: MaterialStateProperty.all(Size(200, 10))),
-              child: Text('Tabs'),
-              onPressed: () => navegar(context, 2),
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.black),
-                  fixedSize: MaterialStateProperty.all(Size(200, 10))),
-              child: Text('Páginas'),
-              onPressed: () => navegar(context, 3),
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.purple),
-                  fixedSize: MaterialStateProperty.all(Size(200, 10))),
-              onPressed: () => navegar(context, 4),
-              child: Text('Imágenes'),
-            ),
+            nuevoBoton(context, 1, Colors.pink, 'List View'),
+            nuevoBoton(context, 2, Colors.cyan, 'Tabs'),
+            nuevoBoton(context, 3, Colors.purple, 'Páginas'),
+            nuevoBoton(context, 4, Colors.orange, 'Imágenes'),
+            nuevoBoton(context, 4, Colors.yellow, 'Drawer'),
             Spacer(
               flex: 3,
             ),
@@ -54,6 +34,17 @@ class HomePage extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.green.shade100,
+    );
+  }
+
+  ElevatedButton nuevoBoton(
+      BuildContext context, int numPage, Color color, String texto) {
+    return ElevatedButton(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(color),
+          fixedSize: MaterialStateProperty.all(Size(200, 10))),
+      onPressed: () => navegar(context, numPage),
+      child: Text(texto),
     );
   }
 
